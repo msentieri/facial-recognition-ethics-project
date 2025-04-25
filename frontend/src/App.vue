@@ -375,6 +375,17 @@
               </div>
             </div>
           </div>
+
+          <!-- New Icons Section -->
+          <div class="app-container">
+            <h1 class="title">My Cool Vue App</h1>
+            <div class="icons-grid">
+              <div class="icon-box" v-for="icon in icons" :key="icon.name">
+                <i :class="icon.class" class="icon"></i>
+                <p>{{ icon.name }}</p>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </main>
@@ -424,7 +435,14 @@ export default {
       ],
       uploadedImage: null,
       result: null,
-      isLoading: false
+      isLoading: false,
+      icons: [
+        { name: "Home", class: "fas fa-home" },
+        { name: "User ", class: "fas fa-user" },
+        { name: "Settings", class: "fas fa-cog" },
+        { name: "Info", class: "fas fa-info-circle" },
+        { name: "Envelope", class: "fas fa-envelope" },
+      ],
     };
   },
   methods: {
@@ -467,6 +485,7 @@ export default {
 
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css');
 
 body {
   font-family: 'Inter', sans-serif;
@@ -504,41 +523,8 @@ html {
 ::-webkit-scrollbar-thumb:hover {
   background: #555;
 }
-</style>
 
-
-<template>
-  <div class="app-container">
-    <h1 class="title">My Cool Vue App</h1>
-    <div class="icons-grid">
-      <div class="icon-box" v-for="icon in icons" :key="icon.name">
-        <i :class="icon.class" class="icon"></i>
-        <p>{{ icon.name }}</p>
-      </div>
-    </div>
-  </div>
-</template>
-
-<script>
-export default {
-  name: "App",
-  data() {
-    return {
-      icons: [
-        { name: "Home", class: "fas fa-home" },
-        { name: "User", class: "fas fa-user" },
-        { name: "Settings", class: "fas fa-cog" },
-        { name: "Info", class: "fas fa-info-circle" },
-        { name: "Envelope", class: "fas fa-envelope" },
-      ],
-    };
-  },
-};
-</script>
-
-<style scoped>
-@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css');
-
+/* App container styles */
 .app-container {
   max-width: 900px;
   margin: auto;
@@ -582,6 +568,37 @@ export default {
   color: #3498db;
   margin-bottom: 0.5rem;
 }
+
+/* Additional styles for existing components */
+.bg-indigo-50 {
+  background: linear-gradient(135deg, #eef2ff, #e0e7ff);
+}
+.bg-yellow-50 {
+  background: linear-gradient(135deg, #fef9c3, #fef08a);
+}
+.bg-blue-50 {
+  background: linear-gradient(135deg, #dbeafe, #bfdbfe);
+}
+.bg-white.rounded-xl {
+  background: #ffffff;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
+}
+
+/* Section header spacing */
+h2.text-2xl {
+  margin-top: 0.5rem;
+}
+
+/* Make tabs more modern */
+button.text-sm {
+  font-size: 0.875rem;
+  border-radius: 0.375rem;
+}
+
+/* Soft hover on cards */
+.bg-white:hover {
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+  transform: translateY(-1px);
+  transition: all 0.2s ease-in-out;
+}
 </style>
-
-
