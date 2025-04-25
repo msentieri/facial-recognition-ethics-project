@@ -507,68 +507,81 @@ html {
 </style>
 
 
+<template>
+  <div class="app-container">
+    <h1 class="title">My Cool Vue App</h1>
+    <div class="icons-grid">
+      <div class="icon-box" v-for="icon in icons" :key="icon.name">
+        <i :class="icon.class" class="icon"></i>
+        <p>{{ icon.name }}</p>
+      </div>
+    </div>
+  </div>
+</template>
+
+<script>
+export default {
+  name: "App",
+  data() {
+    return {
+      icons: [
+        { name: "Home", class: "fas fa-home" },
+        { name: "User", class: "fas fa-user" },
+        { name: "Settings", class: "fas fa-cog" },
+        { name: "Info", class: "fas fa-info-circle" },
+        { name: "Envelope", class: "fas fa-envelope" },
+      ],
+    };
+  },
+};
+</script>
+
 <style scoped>
-/* Icon size adjustment */
-svg.h-8.w-8 {
-  height: 2rem;
-  width: 2rem;
-  color: #6366f1; /* Indigo-500 */
+@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css');
+
+.app-container {
+  max-width: 900px;
+  margin: auto;
+  padding: 2rem;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: #f5f7fa;
+  border-radius: 16px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
 }
 
-/* Upload area style tweak */
-input[type="file"] + label {
-  transition: all 0.2s ease-in-out;
-}
-input[type="file"] + label:hover {
-  background-color: #eef2ff;
-  color: #4338ca;
+.title {
+  text-align: center;
+  font-size: 2.5rem;
+  color: #2c3e50;
+  margin-bottom: 2rem;
 }
 
-/* Tabs refinement */
-button[class*="font-medium"] {
-  border-bottom: 2px solid transparent;
-}
-button.bg-indigo-100 {
-  border-color: #6366f1; /* Indigo-500 */
-}
-
-/* Accent enhancements */
-.bg-indigo-50 {
-  background: linear-gradient(135deg, #eef2ff, #e0e7ff);
-}
-.bg-yellow-50 {
-  background: linear-gradient(135deg, #fef9c3, #fef08a);
-}
-.bg-blue-50 {
-  background: linear-gradient(135deg, #dbeafe, #bfdbfe);
-}
-.bg-white.rounded-xl {
-  background: #ffffff;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
+.icons-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  gap: 1.5rem;
+  justify-items: center;
 }
 
-/* Section header spacing */
-h2.text-2xl {
-  margin-top: 0.5rem;
+.icon-box {
+  background: white;
+  border-radius: 12px;
+  padding: 1rem;
+  text-align: center;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
 }
 
-/* Make tabs more modern */
-button.text-sm {
-  font-size: 0.875rem;
-  border-radius: 0.375rem;
+.icon-box:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
 }
 
-/* Font updates */
-body {
-  font-family: 'Inter', sans-serif;
-  font-feature-settings: "liga" 1, "calt" 1;
-}
-
-/* Soft hover on cards */
-.bg-white:hover {
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
-  transform: translateY(-1px);
-  transition: all 0.2s ease-in-out;
+.icon {
+  font-size: 2.5rem;
+  color: #3498db;
+  margin-bottom: 0.5rem;
 }
 </style>
+
 
