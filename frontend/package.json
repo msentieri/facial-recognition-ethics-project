@@ -1,0 +1,15 @@
+{
+  "name": "facial-recognition-ethics-project",
+  "version": "1.0.0",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "serve": "vite preview"
+  },
+  "dependencies": {
+    "vue": "^3.2.0"
+  },
+  "devDependencies": {
+    "vite": "^5.0.0"
+  }
+}
