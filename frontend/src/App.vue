@@ -487,6 +487,13 @@ export default {
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
 @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css');
 
+/* Globally scale down all inline SVG icons */
+svg {
+  height: 1rem !important;
+  width: 1rem !important;
+}
+
+
 body {
   font-family: 'Inter', sans-serif;
 }
