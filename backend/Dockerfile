@@ -2,19 +2,21 @@ FROM python:3.11-slim
 
 WORKDIR /app
 
-# Install system dependencies
+# Install required system libraries for face_recognition
 RUN apt-get update && apt-get install -y \
-    libgl1 \
-    libglib2.0-0 \
+    cmake \
     build-essential \
+    libopenblas-dev \
+    liblapack-dev \
+    libjpeg-dev \
     && apt-get clean && rm -rf /var/lib/apt/lists/*
 
-# Install Python dependencies
+# Copy requirements and install dependencies
 COPY requirements.txt .
 RUN pip install --upgrade pip && pip install -r requirements.txt
 
-# Copy app code
+# Copy the rest of the app code
 COPY . .
 
-# Run the app using Gunicorn with a single worker
-CMD ["gunicorn", "-w", "1", "-b", "0.0.0.0:10000", "app:app"]
+# Run the app with a single Gunicorn worker to reduce memory usage
+CMD ["gunicorn", "-w", "1", "--threads", "2", "-b", "0.0.0.0:10000", "app:app"]
