@@ -1,11 +1,8 @@
-Here is the updated Vue file with the requested changes:
-
-```vue
 <template>
   <div class="min-h-screen bg-gradient-to-br from-blue-50 to-purple-50 text-gray-800">
     <header class="bg-indigo-600 text-white shadow-lg">
       <div class="container mx-auto px-6 py-8">
-        <h1 class="text-4xl font-bold mb-2">My Cool Vue App</h1>
+        <h1 class="text-4xl font-bold mb-2">Facial Recognition Technology</h1>
         <p class="text-xl text-indigo-100">Ethics, Risks, and Policy Recommendations</p>
       </div>
     </header>
@@ -59,61 +56,7 @@ Here is the updated Vue file with the requested changes:
                     <span class="text-sm">FRT market projected to reach $12.67 billion by 2028 (Grand View Research)</span>
                   </li>
                   <li class="flex items-start">
-                    <svg class ="h-4 w-4 text-indigo-500 mt-1 mr-2 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                    </svg>
-                    <span class="text-sm">Black and Asian faces up to 100 times more likely to be misidentified (NIST study)</span>
-                  </li>
-                  <li class="flex items-start">
                     <svg class="h-4 w-4 text-indigo-500 mt-1 mr-2 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                    </svg>
-                    <span class="text-sm">Several US cities have banned government use of FRT</span>
-                  </li>
-                </ul>
-              </div>
-            </div>
-          </div>
-
-          <!-- Ethical Issues Tab -->
-          <div v-if="activeTab === 1" class="fade-in">
-            <h2 class="text-2xl font-bold mb-6 text-indigo-700">Ethical Concerns</h2>
-            
-            <div class="grid md:grid-cols-2 gap-6">
-              <div>
-                <h3 class="text-lg font-semibold mb-3 flex items-center">
-                  <span class="w-6 h-6 bg-red-100 text-red-600 rounded-full flex items-center justify-center mr-2 text-sm">1</span>
-                  Bias and Inaccuracy
-                </h3>
-                <p class="mb-3 text-sm">Multiple studies have demonstrated significant racial and gender bias in facial recognition systems:</p>
-                <ul class="list-disc pl-5 space-y-1 mb-4 text-sm">
-                  <li>NIST found highest false positive rates for African American and Asian faces (up to 100 times higher than white faces) <span class="text-xs text-gray-500">(NIST, 2019)</span></li>
-                  <li>Women more likely to be misidentified than men <span class="text-xs text-gray-500">(Buolamwini & Gebru, 2018)</span></li>
-                  <li>Higher error rates for darker-skinned individuals <span class="text-xs text-gray-500">(Rajput et al., 2020)</span></li>
-                </ul>
-                
-                <h3 class="text-lg font-semibold mb-3 flex items-center">
-                  <span class="w-6 h-6 bg-red-100 text-red-600 rounded-full flex items-center justify-center mr-2 text-sm">2</span>
-                  Privacy Violations
-                </h3>
-                <p class="mb-3 text-sm">FRT enables unprecedented mass surveillance capabilities:</p>
-                <ul class="list-disc pl-5 space-y-1 text-sm">
-                  <li>Most individuals unaware when their biometric data is collected <span class="text-xs text-gray-500">(EPIC, 2021)</span></li>
-                  <li>Lack of consent in public spaces and commercial settings</li>
-                  <li>Potential for "perpetual line-ups" with no expiration of biometric data</li>
-                </ul>
-              </div>
-              
-              <div>
-                <h3 class="text-lg font-semibold mb-3 flex items-center">
-                  <span class="w-6 h-6 bg-red-100 text-red-600 rounded-full flex items-center justify-center mr-2 text-sm">3</span>
-                  Chilling Effects on Society
-                </h3>
-                <p class="mb-3 text-sm">The presence of facial recognition can alter behavior and limit freedoms:</p>
-                <ul class="list-disc pl-5 space-y-1 mb-4 text-sm">
-                  <li>Reduces willingness to participate in protests <span class="text-xs text-gray-500">(Feldstein, 2019)</span></li>
-                  <li>Creates "self-censorship" in public spaces</li>
-                  <li>Disproportionately impacts marginalized ="h-4 w-4 text-indigo-500 mt-1 mr-2 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
                     </svg>
                     <span class="text-sm">Black and Asian faces up to 100 times more likely to be misidentified (NIST study)</span>
@@ -224,7 +167,6 @@ Here is the updated Vue file with the requested changes:
                       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
                     </svg>
                     Prohibited Uses
-                  ```vue
                   </h4>
                   <p class="text-sm">Ban FRT in sensitive locations: schools, public housing, places of worship, and protests. Prohibit use for immigration enforcement.</p>
                 </div>
@@ -266,7 +208,7 @@ Here is the updated Vue file with the requested changes:
                 <div class="p-3 bg-white border rounded-lg shadow-sm">
                   <h4 class="font-semibold mb-1 text-sm flex items-center">
                     <svg class="h-4 w-4 text-purple-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m- 9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path>
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path>
                     </svg>
                     Accountability Measures
                   </h4>
@@ -314,7 +256,7 @@ Here is the updated Vue file with the requested changes:
                   <div class="mt-1 flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300 border-dashed rounded-md">
                     <div class="space-y-1 text-center">
                       <svg class="mx-auto h-8 w-8 text-gray-400" stroke="currentColor" fill="none" viewBox="0 0 48 48" aria-hidden="true">
-                        <path d="M28 8H12a4 4 0 00-4 4v20m32-12v8m0 0v8a4 4 0 01-4 4H12a4 4 0 01-4- 4v-4m32-4l-3.172-3.172a4 4 0 00-5.656 0L28 28M8 32l9.172-9.172a4 4 0 015.656 0L28 28m0 0l4 4m4-24h8m-4-4v8m-12 4h.02" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                        <path d="M28 8H12a4 4 0 00-4 4v20m32-12v8m0 0v8a4 4 0 01-4 4H12a4 4 0 01-4-4v-4m32-4l-3.172-3.172a4 4 0 00-5.656 0L28 28M8 32l9.172-9.172a4 4 0 015.656 0L28 28m0 0l4 4m4-24h8m-4-4v8m-12 4h.02" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
                       </svg>
                       <div class="flex text-sm text-gray-600">
                         <label for="file-upload" class="relative cursor-pointer bg-white rounded-md font-medium text-indigo-600 hover:text-indigo-500 focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-indigo-500">
@@ -370,8 +312,7 @@ Here is the updated Vue file with the requested changes:
                   <li class="p-2 bg-white rounded shadow-sm hover:shadow-md transition-shadow text-sm">
                     <a href="https://www.nist.gov/programs-projects/face-recognition-vendor-test-frvt" target="_blank" class="block">
                       <h4 class="font-medium text-indigo-600">NIST Face Recognition Vendor Test (2019)</h4>
-                      <p class="text-gray-600 mt-0.5">Comprehensive evaluation of 189 facial recognition algorithms showing demographic differences.</ ```vue
-                    </p>
+                      <p class="text-gray-600 mt-0.5">Comprehensive evaluation of 189 facial recognition algorithms showing demographic differences.</p>
                     </a>
                   </li>
                   <li class="p-2 bg-white rounded shadow-sm hover:shadow-md transition-shadow text-sm">
@@ -423,7 +364,7 @@ Here is the updated Vue file with the requested changes:
                   </div>
                   <span>MN Facial Recognition Legislation</span>
                 </a>
-                <a href="https://www.mncourts.gov/mncourtsgov/media/SCAO-L ibrary/Documents/Technology/Facial-Recognition-Report.pdf" target="_blank" class="p-2 bg-white rounded shadow-sm hover:shadow-md transition-shadow flex items-center text-sm">
+                <a href="https://www.mncourts.gov/mncourtsgov/media/SCAO-Library/Documents/Technology/Facial-Recognition-Report.pdf" target="_blank" class="p-2 bg-white rounded shadow-sm hover:shadow-md transition-shadow flex items-center text-sm">
                   <div class="bg-blue-100 text-blue-800 rounded-full w-6 h-6 flex items-center justify-center mr-2">
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
@@ -431,6 +372,17 @@ Here is the updated Vue file with the requested changes:
                   </div>
                   <span>MN Judicial Branch Report (2021)</span>
                 </a>
+              </div>
+            </div>
+          </div>
+
+          <!-- New Icons Section -->
+          <div class="app-container">
+            <h1 class="title">My Cool Vue App</h1>
+            <div class="icons-grid">
+              <div class="icon-box" v-for="icon in icons" :key="icon.name">
+                <i :class="icon.class" class="icon"></i>
+                <p>{{ icon.name }}</p>
               </div>
             </div>
           </div>
@@ -455,7 +407,7 @@ Here is the updated Vue file with the requested changes:
             <a href="#" class="text-gray-400 hover:text-white transition-colors">
               <span class="sr-only">Twitter</span>
               <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                <path d="M8.29 20.251c7.547 0  11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0022 5.92a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-6.993 3.743 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.072 4.072 0 012.8 9.713v.052a4.105 4.105 0 003.292 4.022 4.095 4.095 0 01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 012 18.407a11.616 11.616 0 006.29 1.84" />
+                <path d="M8.29 20.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0022 5.92a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-6.993 3.743 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.072 4.072 0 012.8 9.713v.052a4.105 4.105 0 003.292 4.022 4.095 4.095 0 01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 012 18.407a11.616 11.616 0 006.29 1.84" />
               </svg>
             </a>
           </div>
@@ -498,6 +450,7 @@ export default {
       const file = event.target.files[0];
       if (!file) return;
       
+      // Create preview
       const reader = new FileReader();
       reader.onload = (e) => {
         this.uploadedImage = e.target.result;
@@ -534,10 +487,12 @@ export default {
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
 @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css');
 
+/* Globally scale down all inline SVG icons */
 svg {
   height: 1rem !important;
   width: 1rem !important;
 }
+
 
 body {
   font-family: 'Inter', sans-serif;
@@ -552,10 +507,12 @@ body {
   to { opacity: 1; transform: translateY(0); }
 }
 
+/* Smooth scrolling for anchor links */
 html {
   scroll-behavior: smooth;
 }
 
+/* Custom scrollbar */
 ::-webkit-scrollbar {
   width: 8px;
   height: 8px;
@@ -574,12 +531,13 @@ html {
   background: #555;
 }
 
+/* App container styles */
 .app-container {
   max-width: 900px;
   margin: auto;
   padding: 2rem;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background : #f5f7fa;
+  background: #f5f7fa;
   border-radius: 16px;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
 }
@@ -618,6 +576,7 @@ html {
   margin-bottom: 0.25rem;
 }
 
+/* Additional styles for existing components */
 .bg-indigo-50 {
   background: linear-gradient(135deg, #eef2ff, #e0e7ff);
 }
@@ -632,15 +591,18 @@ html {
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
 }
 
+/* Section header spacing */
 h2.text-2xl {
   margin-top: 0.5rem;
 }
 
+/* Make tabs more modern */
 button.text-sm {
   font-size: 0.875rem;
   border-radius: 0.375rem;
 }
 
+/* Soft hover on cards */
 .bg-white:hover {
   box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
   transform: translateY(-1px);
