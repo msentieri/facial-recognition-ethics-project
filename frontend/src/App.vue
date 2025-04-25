@@ -564,9 +564,9 @@ html {
 }
 
 .icon {
-  font-size: 2.5rem;
+  font-size: 1.25rem;
   color: #3498db;
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.25rem;
 }
 
 /* Additional styles for existing components */
