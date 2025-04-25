@@ -1,5 +1,6 @@
 from flask import Flask, request, jsonify
 from deepface import DeepFace
+import tempfile
 
 app = Flask(__name__)
 
@@ -12,10 +13,21 @@ def verify():
     img2 = request.files['img2']
 
     try:
-        result = DeepFace.verify(img1.read(), img2.read(), enforce_detection=False)
+        # Save both images to temporary files
+        with tempfile.NamedTemporaryFile(delete=False, suffix=".jpg") as temp1, \
+             tempfile.NamedTemporaryFile(delete=False, suffix=".jpg") as temp2:
+
+            temp1.write(img1.read())
+            temp2.write(img2.read())
+            temp1.flush()
+            temp2.flush()
+
+            result = DeepFace.verify(temp1.name, temp2.name, enforce_detection=False)
+
         return jsonify(result)
     except Exception as e:
-        return jsonify({'error': str(e)}), 500
+        print("DeepFace error:", e)  # Log to console
+        return jsonify({'error': 'Failed to analyze image. Please try another.'}), 500
 
 if __name__ == '__main__':
     app.run(debug=True)
