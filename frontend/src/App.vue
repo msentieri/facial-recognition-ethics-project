@@ -218,9 +218,6 @@
             </div>
           </div>
 
-
-          
-         <template>
   
   <!-- Try It Tab -->
   <div v-if="activeTab === 3" class="fade-in">
