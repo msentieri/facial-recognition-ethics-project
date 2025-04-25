@@ -451,7 +451,7 @@ export default {
         const formData = new FormData();
         formData.append('file', file);
 
-        const response = await fetch('https://facial-recognition-backend-fwzo.onrender.com/api/facial-recognition', {
+        const response = await fetch('https://facial-recognition-backend-fwzo.onrender.com/verify', {
           method: 'POST',
           body: formData,
         });
