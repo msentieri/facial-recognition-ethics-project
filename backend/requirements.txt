@@ -1,3 +1,4 @@
+dlib-bin==19.24.6
 flask
 flask-cors
 face_recognition
