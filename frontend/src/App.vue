@@ -376,16 +376,7 @@
             </div>
           </div>
 
-          <!-- New Icons Section -->
-          <div class="app-container">
-            <h1 class="title">My Cool Vue App</h1>
-            <div class="icons-grid">
-              <div class="icon-box" v-for="icon in icons" :key="icon.name">
-                <i :class="icon.class" class="icon"></i>
-                <p>{{ icon.name }}</p>
-              </div>
-            </div>
-          </div>
+
         </div>
       </div>
     </main>
@@ -408,7 +399,7 @@
         </div>
         <div class="mt-6 pt-4 border-t border-gray-700 text-xs text-gray-400">
           <p>This website is for educational purposes only. The information provided should not be construed as legal advice.</p>
-          <p class="mt-1">Last updated: June 2023</p>
+          <p class="mt-1">Last updated: May 2025</p>
         </div>
       </div>
     </footer>
