@@ -505,3 +505,70 @@ html {
   background: #555;
 }
 </style>
+
+
+<style scoped>
+/* Icon size adjustment */
+svg.h-8.w-8 {
+  height: 2rem;
+  width: 2rem;
+  color: #6366f1; /* Indigo-500 */
+}
+
+/* Upload area style tweak */
+input[type="file"] + label {
+  transition: all 0.2s ease-in-out;
+}
+input[type="file"] + label:hover {
+  background-color: #eef2ff;
+  color: #4338ca;
+}
+
+/* Tabs refinement */
+button[class*="font-medium"] {
+  border-bottom: 2px solid transparent;
+}
+button.bg-indigo-100 {
+  border-color: #6366f1; /* Indigo-500 */
+}
+
+/* Accent enhancements */
+.bg-indigo-50 {
+  background: linear-gradient(135deg, #eef2ff, #e0e7ff);
+}
+.bg-yellow-50 {
+  background: linear-gradient(135deg, #fef9c3, #fef08a);
+}
+.bg-blue-50 {
+  background: linear-gradient(135deg, #dbeafe, #bfdbfe);
+}
+.bg-white.rounded-xl {
+  background: #ffffff;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
+}
+
+/* Section header spacing */
+h2.text-2xl {
+  margin-top: 0.5rem;
+}
+
+/* Make tabs more modern */
+button.text-sm {
+  font-size: 0.875rem;
+  border-radius: 0.375rem;
+}
+
+/* Font updates */
+body {
+  font-family: 'Inter', sans-serif;
+  font-feature-settings: "liga" 1, "calt" 1;
+}
+
+/* Soft hover on cards */
+.bg-white:hover {
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+  transform: translateY(-1px);
+  transition: all 0.2s ease-in-out;
+}
+</style>
+
