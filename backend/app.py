@@ -8,19 +8,16 @@ app = Flask(__name__)
 
 @app.route('/verify', methods=['POST'])
 def verify():
-    # Check for required files
     if 'img1' not in request.files or 'img2' not in request.files:
         return jsonify({'error': 'Both img1 and img2 must be provided in the request.'}), 400
 
     img1 = request.files['img1']
     img2 = request.files['img2']
 
-    # Validate file names
     if img1.filename == '' or img2.filename == '':
         return jsonify({'error': 'Empty filename received for one or both images.'}), 400
 
     try:
-        # Save images to temporary files
         with tempfile.NamedTemporaryFile(delete=False, suffix=".jpg") as temp1, \
              tempfile.NamedTemporaryFile(delete=False, suffix=".jpg") as temp2:
             try:
@@ -32,8 +29,14 @@ def verify():
                 return jsonify({'error': 'Failed to write image files.', 'details': str(file_write_error)}), 500
 
             try:
-                # Run DeepFace verification
-                result = DeepFace.verify(temp1.name, temp2.name, enforce_detection=False)
+                # Use lightweight model and backend to reduce memory
+                result = DeepFace.verify(
+                    temp1.name, 
+                    temp2.name, 
+                    enforce_detection=False,
+                    model_name="SFace",                   # lightweight model
+                    detector_backend="opencv"             # fast, low-RAM detector
+                )
                 return jsonify(result)
             except ValueError as ve:
                 return jsonify({'error': 'Invalid image format or face not detected.', 'details': str(ve)}), 422
