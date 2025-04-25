@@ -1,61 +1,73 @@
 from flask import Flask, request, jsonify
-from deepface import DeepFace
-import tempfile
+import torch
+import numpy as np
+from torchvision import transforms
+from PIL import Image
 import os
+import tempfile
 import traceback
 
+from facenet_pytorch import MTCNN
+from ghostfacenet.model import GhostFaceNet
+
 app = Flask(__name__)
+
+# Load face detector and model once
+device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+mtcnn = MTCNN(image_size=112, margin=0, device=device)
+model = GhostFaceNet(embedding_size=512)
+model.load_state_dict(torch.load("ghostfacenet.pth", map_location=device))
+model.eval().to(device)
+
+transform = transforms.Compose([
+    transforms.Resize((112, 112)),
+    transforms.ToTensor(),
+    transforms.Normalize(mean=[0.5]*3, std=[0.5]*3)
+])
+
+def get_embedding(image_path):
+    img = Image.open(image_path).convert("RGB")
+    face = mtcnn(img)
+    if face is None:
+        return None
+    face = transform(face).unsqueeze(0).to(device)
+    with torch.no_grad():
+        embedding = model(face)
+    return embedding.cpu().numpy()
+
+def cosine_similarity(a, b):
+    return float(np.dot(a, b.T) / (np.linalg.norm(a) * np.linalg.norm(b)))
 
 @app.route('/verify', methods=['POST'])
 def verify():
     if 'img1' not in request.files or 'img2' not in request.files:
-        return jsonify({'error': 'Both img1 and img2 must be provided in the request.'}), 400
-
-    img1 = request.files['img1']
-    img2 = request.files['img2']
-
-    if img1.filename == '' or img2.filename == '':
-        return jsonify({'error': 'Empty filename received for one or both images.'}), 400
+        return jsonify({'error': 'Both img1 and img2 must be provided.'}), 400
 
     try:
-        with tempfile.NamedTemporaryFile(delete=False, suffix=".jpg") as temp1, \
-             tempfile.NamedTemporaryFile(delete=False, suffix=".jpg") as temp2:
-            try:
-                temp1.write(img1.read())
-                temp2.write(img2.read())
-                temp1.flush()
-                temp2.flush()
-            except Exception as file_write_error:
-                return jsonify({'error': 'Failed to write image files.', 'details': str(file_write_error)}), 500
+        with tempfile.NamedTemporaryFile(delete=False, suffix=".jpg") as f1, \
+             tempfile.NamedTemporaryFile(delete=False, suffix=".jpg") as f2:
+            f1.write(request.files['img1'].read())
+            f2.write(request.files['img2'].read())
+            f1_path, f2_path = f1.name, f2.name
 
-            try:
-                # Use lightweight model and backend to reduce memory
-                result = DeepFace.verify(
-                    temp1.name, 
-                    temp2.name, 
-                    enforce_detection=False,
-                    model_name="SFace",                   # lightweight model
-                    detector_backend="opencv"             # fast, low-RAM detector
-                )
-                return jsonify(result)
-            except ValueError as ve:
-                return jsonify({'error': 'Invalid image format or face not detected.', 'details': str(ve)}), 422
-            except Exception as deepface_error:
-                traceback.print_exc()
-                return jsonify({
-                    'error': 'Face verification failed during DeepFace processing.',
-                    'details': str(deepface_error)
-                }), 500
-            finally:
-                os.unlink(temp1.name)
-                os.unlink(temp2.name)
+        emb1 = get_embedding(f1_path)
+        emb2 = get_embedding(f2_path)
+
+        os.unlink(f1_path)
+        os.unlink(f2_path)
+
+        if emb1 is None or emb2 is None:
+            return jsonify({'error': 'Face not detected in one or both images.'}), 422
+
+        similarity = cosine_similarity(emb1, emb2)
+        return jsonify({
+            'verified': similarity > 0.6,  # You can tune this threshold
+            'similarity': similarity
+        })
 
     except Exception as e:
         traceback.print_exc()
-        return jsonify({
-            'error': 'Unexpected server error occurred.',
-            'details': str(e)
-        }), 500
+        return jsonify({'error': 'Verification failed', 'details': str(e)}), 500
 
 @app.errorhandler(404)
 def not_found(e):
@@ -64,10 +76,6 @@ def not_found(e):
 @app.errorhandler(405)
 def method_not_allowed(e):
     return jsonify({'error': 'Method not allowed'}), 405
-
-@app.errorhandler(500)
-def internal_error(e):
-    return jsonify({'error': 'Internal server error'}), 500
 
 if __name__ == '__main__':
     app.run(debug=True)
