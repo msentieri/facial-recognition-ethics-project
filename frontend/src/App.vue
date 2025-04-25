@@ -46,10 +46,10 @@ export default {
       const formData = new FormData();
       formData.append('file', file);
 
-      const response = await fetch('https://your-flask-api.onrender.com/api/facial-recognition', {
-        method: 'POST',
-        body: formData,
-      });
+      const response = await fetch('https://facial-recognition-ethics-project.onrender.com/api/facial-recognition', {
+      method: 'POST',
+      body: formData,
+    });
       const data = await response.json();
       this.result = data;
     },
