@@ -1,2 +1,4 @@
+flask
+flask-cors
 face_recognition
-Flask
+werkzeug
