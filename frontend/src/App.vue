@@ -258,25 +258,23 @@
                         <path d="M28 8H12a4 4 0 00-4 4v20m32-12v8m0 0v8a4 4 0 01-4 4H12a4 4 0 01-4-4v-4m32-4l-3.172-3.172a4 4 0 00-5.656 0L28 28M8 32l9.172-9.172a4 4 0 015.656 0L28 28m0 0l4 4m4-24h8m-4-4v8m-12 4h.02" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
                       </svg>
                       <div class="flex text-sm text-gray-600">
-                        <button 
-                          class="px-4 py-2 bg-indigo-600 text-white font-semibold rounded-md hover:bg-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-400"
-                          onclick="document.getElementById('file-upload').click();"
-                        >
-                          Upload a File
-                        </button>
-                        <input id="file-upload" name="file-upload" type="file" @change="handleImageUpload" accept="image/*" class="hidden" />
-
-                        <p class="pl-1">or drag and drop</p>
-                      </div>
+                      <button 
+                        class="px-4 py-2 bg-indigo-600 text-white font-semibold rounded-md hover:bg-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-400"
+                        onclick="document.getElementById('file-upload').click();"
+                      >
+                        Upload Files
+                      </button>
+                      <input id="file-upload" name="file-upload" type="file" @change="handleImageUpload" accept="image/*" multiple class="hidden" />
+                      
+                      <p class="pl-1">or drag and drop</p>
                       <p class="text-xs text-gray-500">PNG, JPG up to 5MB</p>
-                    </div>
-                  </div>
-                </div>
-                
-                <div v-if="uploadedImage" class="mb-3">
-                  <h3 class="text-xs font-medium text-gray-700 mb-1">Uploaded Image</h3>
-                  <img :src="uploadedImage" alt="Uploaded preview" class="max-w-full h-auto rounded border border-gray-200" />
-                </div>
+                      
+                      <div v-if="uploadedImage1 && uploadedImage2" class="mb-3">
+                        <h3 class="text-xs font-medium text-gray-700 mb-1">Uploaded Images</h3>
+                        <img :src="uploadedImage1" alt="Uploaded preview 1" class="max-w-full h-auto rounded border border-gray-200" />
+                        <img :src="uploadedImage2" alt="Uploaded preview 2" class="max-w-full h-auto rounded border border-gray-200 mt-2" />
+                      </div>
+
                 
                 <div v-if="result" class="mt-3">
                   <h3 class="text-sm font-semibold mb-1">Analysis Results</h3>
@@ -435,38 +433,44 @@ export default {
   },
   methods: {
     async handleImageUpload(event) {
-      const file = event.target.files[0];
-      if (!file) return;
-      
-      // Create preview
-      const reader = new FileReader();
-      reader.onload = (e) => {
-        this.uploadedImage = e.target.result;
-      };
-      reader.readAsDataURL(file);
-      
+      const files = event.target.files;
+      if (files.length < 2) {
+        alert("Please select two images.");
+        return;
+      }
+    
+      // Create previews
+      const reader1 = new FileReader();
+      reader1.onload = (e) => { this.uploadedImage1 = e.target.result; };
+      reader1.readAsDataURL(files[0]);
+    
+      const reader2 = new FileReader();
+      reader2.onload = (e) => { this.uploadedImage2 = e.target.result; };
+      reader2.readAsDataURL(files[1]);
+    
       this.isLoading = true;
-      
       try {
         const formData = new FormData();
-        formData.append('file', file);
-
-        const response = await fetch('https://facial-recognition-backend-fwzo.onrender.com/verify', {
-          method: 'POST',
+        formData.append("img1", files[0]);
+        formData.append("img2", files[1]);
+    
+        const response = await fetch("https://facial-recognition-backend-fwzo.onrender.com/verify", {
+          method: "POST",
           body: formData,
         });
-        
-        if (!response.ok) throw new Error('Analysis failed');
-        
+    
+        if (!response.ok) throw new Error("Analysis failed");
         const data = await response.json();
         this.result = data;
+    
       } catch (error) {
-        console.error('Error:', error);
-        this.result = { error: "Failed to analyze image. Please try another." };
+        console.error("Error:", error);
+        this.result = { error: "Failed to analyze images. Please try again." };
       } finally {
         this.isLoading = false;
       }
     }
+
   }
 };
 </script>
