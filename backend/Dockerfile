@@ -1,6 +1,6 @@
-FROM python:3.11-slim 
+FROM python:3.11-slim
 
-WORKDIR /app           
+WORKDIR /app
 
 # Install required system libraries
 RUN apt-get update && apt-get install -y \
@@ -8,9 +8,12 @@ RUN apt-get update && apt-get install -y \
     libglib2.0-0 \
     && apt-get clean && rm -rf /var/lib/apt/lists/*
 
+# Copy requirements and install dependencies
 COPY requirements.txt .
 RUN pip install --upgrade pip && pip install -r requirements.txt
 
+# Copy the rest of the app code
 COPY . .
 
-CMD ["gunicorn", "-b", "0.0.0.0:10000", "app:app"]
+# Run the app with a single Gunicorn worker to reduce memory usage
+CMD ["gunicorn", "-w", "1", "-b", "0.0.0.0:10000", "app:app"]
