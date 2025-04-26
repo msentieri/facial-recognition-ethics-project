@@ -507,34 +507,45 @@ export default {
         this.uploadedImages[imgKey] = URL.createObjectURL(file);
       }
     },
-    
     async compareFaces() {
       if (!this.uploadedImages.img1 || !this.uploadedImages.img2) {
         this.result = { error: "Please upload both images first" };
         return;
       }
-
+    
       this.isLoading = true;
       this.result = null;
-
+    
       try {
-        const img1Blob = await fetch(this.uploadedImages.img1).then(res => res.blob());
-        const img2Blob = await fetch(this.uploadedImages.img2).then(res => res.blob());
-
-        const formData = new FormData();
-        formData.append('img1', img1Blob, 'image1.jpg');
-        formData.append('img2', img2Blob, 'image2.jpg');
-
-        const response = await fetch('https://facial-recognition-backend-fwzo.onrender.com/verify', {
+        // Step 1: Get API key and URL from your backend
+        const credentialsResponse = await fetch('https://facial-recognition-backend-fwzo.onrender.com/api-key');
+        if (!credentialsResponse.ok) {
+          throw new Error('Failed to get API credentials');
+        }
+        const { api_key, api_url } = await credentialsResponse.json();
+    
+        // Step 2: Convert images to base64
+        const img1Base64 = await this.getBase64(this.uploadedImages.img1);
+        const img2Base64 = await this.getBase64(this.uploadedImages.img2);
+    
+        // Step 3: Call MXFace API directly
+        const response = await fetch(api_url, {
           method: 'POST',
-          body: formData,
+          headers: {
+            'Content-Type': 'application/json',
+            'subscriptionkey': api_key
+          },
+          body: JSON.stringify({
+            encoded_image1: img1Base64,
+            encoded_image2: img2Base64
+          })
         });
-
+    
         if (!response.ok) {
           const errorData = await response.json();
           throw new Error(errorData.error || 'Comparison failed');
         }
-
+    
         const data = await response.json();
         this.result = data;
       } catch (error) {
@@ -543,6 +554,23 @@ export default {
       } finally {
         this.isLoading = false;
       }
+    },
+    getBase64(imgUrl) {
+      return new Promise((resolve, reject) => {
+        const img = new Image();
+        img.crossOrigin = 'Anonymous'; // Handle CORS if needed
+        img.onload = () => {
+          const canvas = document.createElement('canvas');
+          const ctx = canvas.getContext('2d');
+          canvas.height = img.naturalHeight;
+          canvas.width = img.naturalWidth;
+          ctx.drawImage(img, 0, 0);
+          const dataUrl = canvas.toDataURL('image/jpeg');
+          resolve(dataUrl.split(',')[1]); // Extract just the base64 part
+        };
+        img.onerror = reject;
+        img.src = imgUrl;
+      });
     }
   }
 };
