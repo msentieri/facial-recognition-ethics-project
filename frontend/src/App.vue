@@ -339,26 +339,22 @@
                     <div v-if="result.error" class="text-red-600">{{ result.error }}</div>
                     <template v-else>
                       <div class="mb-2">
-                        <span class="font-medium">Verified: </span>
+                        <span class="font-medium">Match Result: </span>
                         <span :class="{'text-green-600': result.verified, 'text-red-600': !result.verified}">
-                          {{ result.verified ? 'Match' : 'No Match' }}
+                          {{ result.verified ? 'Match Found' : 'No Match' }}
                         </span>
                       </div>
                       <div class="mb-2">
-                        <span class="font-medium">Confidence: </span>
-                        <span>{{ (result.distance * 100).toFixed(2) }}%</span>
+                        <span class="font-medium">Image Quality: </span>
+                        <span>{{ result.confidence.toFixed(2) }}%</span>
                       </div>
                       <div class="mb-2">
                         <span class="font-medium">Threshold: </span>
-                        <span>{{ (result.threshold * 100).toFixed(2) }}%</span>
+                        <span>{{ result.threshold }}%</span>
                       </div>
                       <div class="mb-2">
                         <span class="font-medium">Model: </span>
                         <span>{{ result.model }}</span>
-                      </div>
-                      <div class="mb-2">
-                        <span class="font-medium">Similarity Metric: </span>
-                        <span>{{ result.similarity_metric }}</span>
                       </div>
                     </template>
                   </div>
@@ -517,18 +513,18 @@ export default {
       this.result = null;
     
       try {
-        // Step 1: Get API key and URL from your backend
+        
         const credentialsResponse = await fetch('https://facial-recognition-backend-fwzo.onrender.com/api-key');
         if (!credentialsResponse.ok) {
           throw new Error('Failed to get API credentials');
         }
         const { api_key, api_url } = await credentialsResponse.json();
     
-        // Step 2: Convert images to base64
+        
         const img1Base64 = await this.getBase64(this.uploadedImages.img1);
         const img2Base64 = await this.getBase64(this.uploadedImages.img2);
     
-        // Step 3: Call MXFace API directly
+        
         const response = await fetch(api_url, {
           method: 'POST',
           headers: {
@@ -547,7 +543,13 @@ export default {
         }
     
         const data = await response.json();
-        this.result = data;
+        this.result = {
+          verified: mxfaceData.matchedFaces?.[0]?.matchResult === 1,
+          confidence: mxfaceData.matchedFaces?.[0]?.quality || 0,
+          threshold: 60, // MXFace uses 60 as the default threshold
+          model: "MXFace API",
+          similarity_metric: "Proprietary Algorithm"
+        };
       } catch (error) {
         console.error('Error:', error);
         this.result = { error: error.message || "Failed to compare images. Please try again." };
