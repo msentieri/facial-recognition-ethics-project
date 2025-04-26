@@ -544,9 +544,9 @@ export default {
     
         const data = await response.json();
         this.result = {
-          verified: mxfaceData.matchedFaces?.[0]?.matchResult === 1,
-          confidence: mxfaceData.matchedFaces?.[0]?.quality || 0,
-          threshold: 60, // MXFace uses 60 as the default threshold
+          verified: data.matchedFaces?.[0]?.matchResult === 1, 
+          confidence: data.matchedFaces?.[0]?.quality || 0,
+          threshold: 60,
           model: "MXFace API",
           similarity_metric: "Proprietary Algorithm"
         };
