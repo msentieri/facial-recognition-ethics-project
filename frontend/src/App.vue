@@ -488,47 +488,40 @@
   </div>
 </template>
 
+
+<template>
+  <div>
+    <input type="file" @change="handleFileUpload" ref="img1" accept="image/*" />
+    <input type="file" @change="handleFileUpload" ref="img2" accept="image/*" />
+    <button @click="compareFaces">Compare Faces</button>
+    
+    <div v-if="isLoading">Loading...</div>
+    <div v-if="result">
+      <p v-if="result.error">{{ result.error }}</p>
+      <pre v-else>{{ result | JSON.stringify }}</pre>
+    </div>
+  </div>
+</template>
+
+
 <script>
 export default {
   data() {
     return {
-      activeTab: 0,
-      tabs: [
-        'Overview', 
-        'Ethical Issues', 
-        'MN Legislation', 
-        'Try It', 
-        'Resources'
-      ],
       uploadedImages: {
         img1: null,
         img2: null
       },
-      result: null,
       isLoading: false,
-      icons: [
-        { name: "Home", class: "fas fa-home" },
-        { name: "User ", class: "fas fa-user" },
-        { name: "Settings", class: "fas fa-cog" },
-        { name: "Info", class: "fas fa-info-circle" },
-        { name: "Envelope", class: "fas fa-envelope" },
-      ],
+      result: null,
     };
   },
   methods: {
-    async handleImageUpload(event, imgKey) {
-      const file = event.target.files[0];
-      if (!file) return;
-      
-      // Create preview
-      const reader = new FileReader();
-      reader.onload = (e) => {
-        this.uploadedImages = {
-          ...this.uploadedImages,
-          [imgKey]: e.target.result
-        };
-      };
-      reader.readAsDataURL(file);
+    // Handle file uploads
+    handleFileUpload(event) {
+      const fileInput = event.target;
+      const fileKey = fileInput === this.$refs.img1 ? 'img1' : 'img2';
+      this.uploadedImages[fileKey] = URL.createObjectURL(fileInput.files[0]);
     },
     
     async compareFaces() {
@@ -536,30 +529,32 @@ export default {
         this.result = { error: "Please upload both images first" };
         return;
       }
-      
+
       this.isLoading = true;
       this.result = null;
-      
+
       try {
-        // Convert base64 images to Blobs
+        // Convert images to Blobs
         const img1Blob = await fetch(this.uploadedImages.img1).then(res => res.blob());
         const img2Blob = await fetch(this.uploadedImages.img2).then(res => res.blob());
-        
+
         // Create FormData and append both images
         const formData = new FormData();
         formData.append('img1', img1Blob, 'image1.jpg');
         formData.append('img2', img2Blob, 'image2.jpg');
 
+        // Make the request to your backend
         const response = await fetch('https://facial-recognition-backend-fwzo.onrender.com/verify', {
           method: 'POST',
           body: formData,
         });
-        
+
         if (!response.ok) {
           const errorData = await response.json();
           throw new Error(errorData.error || 'Comparison failed');
         }
-        
+
+        // Get the data from backend (which relays MXFace response)
         const data = await response.json();
         this.result = data;
       } catch (error) {
