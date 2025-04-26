@@ -110,7 +110,7 @@
                 <ul class="list-disc pl-5 space-y-1 mb-4 text-sm">
                   <li>Reduces willingness to participate in protests <span class="text-xs text-gray-500">(Feldstein, 2019)</span></li>
                   <li>Creates "self-censorship" in public spaces</li>
-                  <li>Disproportionately impacts marginalized communities</li>
+                  <li>Dispro portionately impacts marginalized communities</li>
                 </ul>
                 
                 <h3 class="text-lg font-semibold mb-3 flex items-center">
@@ -208,7 +208,8 @@
                 <div class="p-3 bg-white border rounded-lg shadow-sm">
                   <h4 class="font-semibold mb-1 text-sm flex items-center">
                     <svg class="h-4 w-4 text-purple-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path>
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 ```vue
+0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path>
                     </svg>
                     Accountability Measures
                   </h4>
@@ -218,164 +219,163 @@
             </div>
           </div>
 
-  
-  <!-- Try It Tab -->
-  <div v-if="activeTab === 3" class="fade-in">
-    <div class="grid md:grid-cols-2 gap-6">
-      <div>
-        <h2 class="text-2xl font-bold mb-4 text-indigo-700">Facial Recognition Demo</h2>
-        <p class="mb-4 text-sm">This demonstration shows how basic facial recognition works. Upload two images to compare faces.</p>
-        
-        <div class="bg-indigo-50 p-4 rounded-lg mb-4">
-          <h3 class="text-base font-semibold mb-2 text-indigo-700">How It Works</h3>
-          <ul class="space-y-2">
-            <li class="flex items-start">
-              <svg class="h-4 w-4 text-indigo-500 mt-0.5 mr-2 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-              </svg>
-              <span class="text-sm">Images are uploaded to server - processing does not happen locally</span>
-            </li>
-            <li class="flex items-start">
-              <svg class="h-4 w-4 text-indigo-500 mt-0.5 mr-2 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-              </svg>
-              <span class="text-sm">Demo uses DeepFace library for facial verification</span>
-            </li>
-            <li class="flex items-start">
-              <svg class="h-4 w-4 text-indigo-500 mt-0.5 mr-2 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-              </svg>
-              <span class="text-sm">Compares two faces and returns similarity score</span>
-            </li>
-          </ul>
-        </div>
-      </div>
-      
-      <div class="bg-white p-4 rounded-lg shadow-md">
-        <!-- First Image Upload -->
-        <div class="mb-4">
-          <h3 class="text-sm font-medium text-gray-700 mb-2">First Image</h3>
-          <div class="mt-1 flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300 border-dashed rounded-md">
-            <div class="space-y-1 text-center">
-              <svg class="mx-auto h-8 w-8 text-gray-400" stroke="currentColor" fill="none" viewBox="0 0 48 48" aria-hidden="true">
-                <path d="M28 8H12a4 4 0 00-4 4v20m32-12v8m0 0v8a4 4 0 01-4 4H12a4 4 0 01-4-4v-4m32-4l-3.172-3.172a4 4 0 00-5.656 0L28 28M8 32l9.172-9.172a4 4 0 015.656 0L28 28m0 0l4 4m4-24h8m-4-4v8m-12 4h.02" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-              </svg>
-              <div class="flex text-sm text-gray-600 justify-center">
-                <button 
-                  class="px-4 py-2 bg-indigo-600 text-white font-semibold rounded-md hover:bg-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-400"
-                  @click="$refs.fileUpload1.click()"
-                >
-                  Upload First Image
-                </button>
-                <input 
-                  id="file-upload1" 
-                  ref="fileUpload1"
-                  name="file-upload1" 
-                  type="file" 
-                  @change="handleImageUpload($event, 'img1')" 
-                  accept="image/*" 
-                  class="hidden" 
-                />
-                <p class="pl-1 my-auto">or drag and drop</p>
+          <!-- Try It Tab -->
+          <div v-if="activeTab === 3" class="fade-in">
+            <div class="grid md:grid-cols-2 gap-6">
+              <div>
+                <h2 class="text-2xl font-bold mb-4 text-indigo-700">Facial Recognition Demo</h2>
+                <p class="mb-4 text-sm">This demonstration shows how basic facial recognition works. Upload two images to compare faces.</p>
+                
+                <div class="bg-indigo-50 p-4 rounded-lg mb-4">
+                  <h3 class="text-base font-semibold mb-2 text-indigo-700">How It Works</h3>
+                  <ul class="space-y-2">
+                    <li class="flex items-start">
+                      <svg class="h-4 w-4 text-indigo-500 mt-0.5 mr-2 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                      </svg>
+                      <span class="text-sm">Images are uploaded to server - processing does not happen locally</span>
+                    </li>
+                    <li class="flex items-start">
+                      <svg class="h-4 w-4 text-indigo-500 mt-0.5 mr-2 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                      </svg>
+                      <span class="text-sm">Demo uses DeepFace library for facial verification</span>
+                    </li>
+                    <li class="flex items-start">
+                      <svg class="h-4 w-4 text-indigo-500 mt-0.5 mr-2 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                      </svg>
+                      <span class="text-sm">Compares two faces and returns similarity score</span>
+                    </li>
+                  </ul>
+                </div>
               </div>
-              <p class="text-xs text-gray-500">PNG, JPG up to 5MB</p>
+              
+              <div class="bg-white p-4 rounded-lg shadow-md">
+                <!-- First Image Upload -->
+                <div class="mb-4">
+                  <h3 class="text-sm font-medium text-gray-700 mb-2">First Image</h3>
+                  <div class="mt-1 flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300 border-dashed rounded-md">
+                    <div class="space-y-1 text-center">
+                      <svg class="mx-auto h-8 w-8 text-gray-400" stroke="currentColor" fill="none" viewBox="0 0 48 48" aria-hidden="true">
+                        <path d="M28 8H12a4 4 0 00-4 4v20m32-12v8m0 0v8a4 4 0 01-4 4H12a4 4 0 01-4-4v 4m32-4l-3.172-3.172a4 4 0 00-5.656 0L28 28M8 32l9.172-9.172a4 4 0 015.656 0L28 28m0 0l4 4m4-24h8m-4-4v8m-12 4h.02" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                      </svg>
+                      <div class="flex text-sm text-gray-600 justify-center">
+                        <button 
+                          class="px-4 py-2 bg-indigo-600 text-white font-semibold rounded-md hover:bg-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-400"
+                          @click="$refs.fileUpload1.click()"
+                        >
+                          Upload First Image
+                        </button>
+                        <input 
+                          id="file-upload1" 
+                          ref="fileUpload1"
+                          name="file-upload1" 
+                          type="file" 
+                          @change="handleImageUpload($event, 'img1')" 
+                          accept="image/*" 
+                          class="hidden" 
+                        />
+                        <p class="pl-1 my-auto">or drag and drop</p>
+                      </div>
+                      <p class="text-xs text-gray-500">PNG, JPG up to 5MB</p>
+                    </div>
+                  </div>
+                  <div v-if="uploadedImages.img1" class="mt-2">
+                    <img :src="uploadedImages.img1" alt="First image preview" class="max-w-full h-auto rounded border border-gray-200 max-h-40" />
+                  </div>
+                </div>
+                
+                <!-- Second Image Upload -->
+                <div class="mb-4">
+                  <h3 class="text-sm font-medium text-gray-700 mb-2">Second Image</h3>
+                  <div class="mt-1 flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300 border-dashed rounded-md">
+                    <div class="space-y-1 text-center">
+                      <svg class="mx-auto h-8 w-8 text-gray-400" stroke="currentColor" fill="none" viewBox="0 0 48 48" aria-hidden="true">
+                        <path d="M28 8H12a4 4 0 00-4 4v20m32-12v8m0 0v8a4 4 0 01-4 4H12a4 4 0 01-4-4v-4m32-4l-3.172-3.172a4 4 0 00-5.656 0L28 28M8 32l9.172-9.172a4 4 0 015.656 0L28 28m0 0l4 4m4-24h8m-4-4v8m-12 4h.02" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                      </svg>
+                      <div class="flex text-sm text-gray-600 justify-center">
+                        <button 
+                          class="px-4 py-2 bg-indigo-600 text-white font-semibold rounded-md hover:bg-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-400"
+                          @click="$refs.fileUpload2.click()"
+                        >
+                          Upload Second Image
+                        </button>
+                        <input 
+                          id="file-upload2" 
+                          ref="fileUpload2"
+                          name="file-upload2" 
+                          type="file" 
+                          @change="handleImageUpload($event, 'img2')" 
+                          accept="image/*" 
+                          class="hidden" 
+                        />
+                        <p class="pl-1 my-auto">or drag and drop</p>
+                      </div>
+                      <p class="text-xs text-gray-500">PNG, JPG up to 5MB</p>
+                    </div>
+                  </div>
+                  <div v-if="uploadedImages.img2" class="mt-2">
+                    <img :src="uploadedImages.img2" alt="Second image preview" class="max-w-full h-auto rounded border border-gray-200 max-h-40" />
+                  </div>
+                </div>
+                
+                <!-- Compare Button -->
+                <div class="flex justify-center mb-4">
+                  <button 
+                    @click="compareFaces" 
+                    :disabled="!uploadedImages.img1 || !uploadedImages.img2 || isLoading"
+                    :class="{'bg-indigo-400 cursor-not-allowed': !uploadedImages.img1 || !uploadedImages.img2, 'bg-indigo-600 hover:bg-indigo-500': uploadedImages.img1 && uploadedImages.img2}"
+                    class="px-6 py-2 text-white font-semibold rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-400 transition-colors"
+                  >
+                    Compare Faces
+                  </button>
+                </div>
+                
+                <!-- Results Display -->
+                <div v-if="result" class="mt-3">
+                  <h3 class="text-sm font-semibold mb-1">Comparison Results</h3>
+                  <div class="bg-gray-50 p-3 rounded text-xs">
+                    <div v-if="result.error" class="text-red-600">{{ result.error }}</div>
+                    <template v-else>
+                      <div class="mb-2">
+                        <span class="font-medium">Verified: </span>
+                        <span :class="{'text-green-600': result.verified, 'text-red-600': !result.verified}">
+                          {{ result.verified ? 'Match' : 'No Match' }}
+                        </span>
+                      </div>
+                      <div class="mb-2">
+                        <span class="font-medium">Confidence: </span>
+                        <span>{{ (result.distance * 100).toFixed(2) }}%</span>
+                      </div>
+                      <div class="mb-2">
+                        <span class="font-medium">Threshold: </span>
+                        <span>{{ (result.threshold * 100).toFixed(2) }}%</span>
+                      </div>
+                      <div class="mb-2">
+                        <span class="font-medium">Model: </span>
+                        <span>{{ result.model }}</span>
+                      </div>
+                      <div class="mb-2">
+                        <span class="font-medium">Similarity Metric: </span>
+                        <span>{{ result.similarity_metric }}</span>
+                      </div>
+                    </template>
+                  </div>
+                </div>
+                
+                <div v-if="isLoading" class="mt-3">
+                  <div class="flex items-center justify-center">
+                    <svg class="animate-spin -ml-1 mr-2 h-4 w-4 text-indigo-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                      <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                      <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                    </svg>
+                    <span class="text-sm">Processing images...</span>
+                  </div>
+                </div>
+              </div>
             </div>
-          </div>
-          <div v-if="uploadedImages.img1" class="mt-2">
-            <img :src="uploadedImages.img1" alt="First image preview" class="max-w-full h-auto rounded border border-gray-200 max-h-40" />
-          </div>
-        </div>
-        
-        <!-- Second Image Upload -->
-        <div class="mb-4">
-          <h3 class="text-sm font-medium text-gray-700 mb-2">Second Image</h3>
-          <div class="mt-1 flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300 border-dashed rounded-md">
-            <div class="space-y-1 text-center">
-              <svg class="mx-auto h-8 w-8 text-gray-400" stroke="currentColor" fill="none" viewBox="0 0 48 48" aria-hidden="true">
-                <path d="M28 8H12a4 4 0 00-4 4v20m32-12v8m0 0v8a4 4 0 01-4 4H12a4 4 0 01-4-4v-4m32-4l-3.172-3.172a4 4 0 00-5.656 0L28 28M8 32l9.172-9.172a4 4 0 015.656 0L28 28m0 0l4 4m4-24h8m-4-4v8m-12 4h.02" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-              </svg>
-              <div class="flex text-sm text-gray-600 justify-center">
-                <button 
-                  class="px-4 py-2 bg-indigo-600 text-white font-semibold rounded-md hover:bg-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-400"
-                  @click="$refs.fileUpload2.click()"
-                >
-                  Upload Second Image
-                </button>
-                <input 
-                  id="file-upload2" 
-                  ref="fileUpload2"
-                  name="file-upload2" 
-                  type="file" 
-                  @change="handleImageUpload($event, 'img2')" 
-                  accept="image/*" 
-                  class="hidden" 
-                />
-                <p class="pl-1 my-auto">or drag and drop</p>
-              </div>
-              <p class="text-xs text-gray-500">PNG, JPG up to 5MB</p>
-            </div>
-          </div>
-          <div v-if="uploadedImages.img2" class="mt-2">
-            <img :src="uploadedImages.img2" alt="Second image preview" class="max-w-full h-auto rounded border border-gray-200 max-h-40" />
-          </div>
-        </div>
-        
-        <!-- Compare Button -->
-        <div class="flex justify-center mb-4">
-          <button 
-            @click="compareFaces" 
-            :disabled="!uploadedImages.img1 || !uploadedImages.img2 || isLoading"
-            :class="{'bg-indigo-400 cursor-not-allowed': !uploadedImages.img1 || !uploadedImages.img2, 'bg-indigo-600 hover:bg-indigo-500': uploadedImages.img1 && uploadedImages.img2}"
-            class="px-6 py-2 text-white font-semibold rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-400 transition-colors"
-          >
-            Compare Faces
-          </button>
-        </div>
-        
-        <!-- Results Display -->
-        <div v-if="result" class="mt-3">
-          <h3 class="text-sm font-semibold mb-1">Comparison Results</h3>
-          <div class="bg-gray-50 p-3 rounded text-xs">
-            <div v-if="result.error" class="text-red-600">{{ result.error }}</div>
-            <template v-else>
-              <div class="mb-2">
-                <span class="font-medium">Verified: </span>
-                <span :class="{'text-green-600': result.verified, 'text-red-600': !result.verified}">
-                  {{ result.verified ? 'Match' : 'No Match' }}
-                </span>
-              </div>
-              <div class="mb-2">
-                <span class="font-medium">Confidence: </span>
-                <span>{{ (result.distance * 100).toFixed(2) }}%</span>
-              </div>
-              <div class="mb-2">
-                <span class="font-medium">Threshold: </span>
-                <span>{{ (result.threshold * 100).toFixed(2) }}%</span>
-              </div>
-              <div class="mb-2">
-                <span class="font-medium">Model: </span>
-                <span>{{ result.model }}</span>
-              </div>
-              <div class="mb-2">
-                <span class="font-medium">Similarity Metric: </span>
-                <span>{{ result.similarity_metric }}</span>
-              </div>
-            </template>
-          </div>
-        </div>
-        
-        <div v-if="isLoading" class="mt-3">
-          <div class="flex items-center justify-center">
-            <svg class="animate-spin -ml-1 mr-2 h-4 w-4 text-indigo-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-              <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
-              <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-            </svg>
-            <span class="text-sm">Processing images...</span>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>     
+          </div>     
 
           <!-- Resources Tab -->
           <div v-if="activeTab === 4" class="fade-in">
@@ -398,7 +398,7 @@
                     </a>
                   </li>
                   <li class="p-2 bg-white rounded shadow-sm hover:shadow-md transition-shadow text-sm">
-                    <a href="https://doi.org/10.1145/3442381.3442822" target="_blank" class="block">
+                    <a href="https://doi.org/10.1145/3442381.3442822" target="_blank" class=" block">
                       <h4 class="font-medium text-indigo-600">The Perpetual Line-Up (Rajput et al., 2020)</h4>
                       <p class="text-gray-600 mt-0.5">Analysis of law enforcement facial recognition networks and privacy implications.</p>
                     </a>
@@ -447,7 +447,7 @@
                   <span>MN Facial Recognition Legislation</span>
                 </a>
                 <a href="https://www.mncourts.gov/mncourtsgov/media/SCAO-Library/Documents/Technology/Facial-Recognition-Report.pdf" target="_blank" class="p-2 bg-white rounded shadow-sm hover:shadow-md transition-shadow flex items-center text-sm">
-                  <div class="bg-blue-100 text-blue-800 rounded-full w-6 h-6 flex items-center justify-center mr-2">
+                  <div class="bg-blue-100 text-blue-800 rounded-full w-6 h-6 flex items-center justify-center mr -2">
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
                     </svg>
@@ -457,8 +457,6 @@
               </div>
             </div>
           </div>
-
-
         </div>
       </div>
     </main>
@@ -488,13 +486,12 @@
   </div>
 </template>
 
-
-
-
 <script>
 export default {
   data() {
     return {
+      tabs: ['Overview', 'Ethical Issues', 'MN Legislation', 'Try It', 'Resources'],
+      activeTab: 0,
       uploadedImages: {
         img1: null,
         img2: null
@@ -504,11 +501,11 @@ export default {
     };
   },
   methods: {
-    // Handle file uploads
-    handleFileUpload(event) {
-      const fileInput = event.target;
-      const fileKey = fileInput === this.$refs.img1 ? 'img1' : 'img2';
-      this.uploadedImages[fileKey] = URL.createObjectURL(fileInput.files[0]);
+    handleImageUpload(event, imgKey) {
+      const file = event.target.files[0];
+      if (file) {
+        this.uploadedImages[imgKey] = URL.createObjectURL(file);
+      }
     },
     
     async compareFaces() {
@@ -521,16 +518,13 @@ export default {
       this.result = null;
 
       try {
-        // Convert images to Blobs
         const img1Blob = await fetch(this.uploadedImages.img1).then(res => res.blob());
         const img2Blob = await fetch(this.uploadedImages.img2).then(res => res.blob());
 
-        // Create FormData and append both images
         const formData = new FormData();
         formData.append('img1', img1Blob, 'image1.jpg');
         formData.append('img2', img2Blob, 'image2.jpg');
 
-        // Make the request to your backend
         const response = await fetch('https://facial-recognition-backend-fwzo.onrender.com/verify', {
           method: 'POST',
           body: formData,
@@ -541,7 +535,6 @@ export default {
           throw new Error(errorData.error || 'Comparison failed');
         }
 
-        // Get the data from backend (which relays MXFace response)
         const data = await response.json();
         this.result = data;
       } catch (error) {
@@ -559,12 +552,10 @@ export default {
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
 @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css');
 
-/* Globally scale down all inline SVG icons */
 svg {
   height: 1rem !important;
   width: 1rem !important;
 }
-
 
 body {
   font-family: 'Inter', sans-serif;
@@ -579,12 +570,10 @@ body {
   to { opacity: 1; transform: translateY(0); }
 }
 
-/* Smooth scrolling for anchor links */
 html {
   scroll-behavior: smooth;
 }
 
-/* Custom scrollbar */
 ::-webkit-scrollbar {
   width: 8px;
   height: 8px;
@@ -603,7 +592,6 @@ html {
   background: #555;
 }
 
-/* App container styles */
 .app-container {
   max-width: 900px;
   margin: auto;
@@ -648,7 +636,6 @@ html {
   margin-bottom: 0.25rem;
 }
 
-/* Additional styles for existing components */
 .bg-indigo-50 {
   background: linear-gradient(135deg, #eef2ff, #e0e7ff);
 }
@@ -663,18 +650,15 @@ html {
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
 }
 
-/* Section header spacing */
 h2.text-2xl {
   margin-top: 0.5rem;
 }
 
-/* Make tabs more modern */
 button.text-sm {
   font-size: 0.875rem;
   border-radius: 0.375rem;
 }
 
-/* Soft hover on cards */
 .bg-white:hover {
   box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
   transform: translateY(-1px);
