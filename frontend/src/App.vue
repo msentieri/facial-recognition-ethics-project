@@ -489,19 +489,6 @@
 </template>
 
 
-<template>
-  <div>
-    <input type="file" @change="handleFileUpload" ref="img1" accept="image/*" />
-    <input type="file" @change="handleFileUpload" ref="img2" accept="image/*" />
-    <button @click="compareFaces">Compare Faces</button>
-    
-    <div v-if="isLoading">Loading...</div>
-    <div v-if="result">
-      <p v-if="result.error">{{ result.error }}</p>
-      <pre v-else>{{ result | JSON.stringify }}</pre>
-    </div>
-  </div>
-</template>
 
 
 <script>
