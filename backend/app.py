@@ -12,6 +12,9 @@ def encode_image(file):
     return base64.b64encode(file.read()).decode('utf-8')
 
 def call_mxface(encoded_img1, encoded_img2):
+    if not MXFACE_API_KEY:
+        raise ValueError("MXFACE_API_KEY is not set.")
+
     headers = {
         'Content-Type': 'application/json',
         'subscriptionkey': MXFACE_API_KEY
@@ -20,8 +23,14 @@ def call_mxface(encoded_img1, encoded_img2):
         "encoded_image1": encoded_img1,
         "encoded_image2": encoded_img2
     }
-    response = requests.post(MXFACE_API_URL, headers=headers, json=payload)
-    return response
+
+    try:
+        response = requests.post(MXFACE_API_URL, headers=headers, json=payload, timeout=10)
+        response.raise_for_status()  # Raise exception for 4xx/5xx
+        return response
+    except requests.exceptions.RequestException as e:
+        print(f"Error calling MXFace API: {e}")
+        raise
 
 @app.route('/verify', methods=['POST'])
 def verify():
@@ -39,12 +48,14 @@ def verify():
         encoded_img2 = encode_image(img2)
         mxface_response = call_mxface(encoded_img1, encoded_img2)
 
-        if mxface_response.status_code == 200:
-            return jsonify(mxface_response.json())
-        else:
-            return jsonify({'error': 'MXFace API error', 'details': mxface_response.text}), mxface_response.status_code
+        return jsonify(mxface_response.json())
 
+    except ValueError as ve:
+        return jsonify({'error': str(ve)}), 500
+    except requests.exceptions.RequestException as re:
+        return jsonify({'error': 'Error contacting MXFace API', 'details': str(re)}), 502
     except Exception as e:
+        print(f"Unexpected error: {e}")
         return jsonify({'error': 'Unexpected server error.', 'details': str(e)}), 500
 
 @app.errorhandler(404)
